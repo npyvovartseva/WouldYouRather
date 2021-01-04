@@ -3,7 +3,7 @@ const logger = (store) => (next) => (action) => {
     console.log('The action: ', action);
     const returnValue = next(action);
     console.log('The new state is: ', store.getState())
-    console.groupend();
+    console.groupEnd();
     return returnValue;
 }
 
