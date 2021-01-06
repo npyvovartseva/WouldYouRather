@@ -1,19 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {handelInitialData} from '../actions/shared';
+import { handelInitialData } from '../actions/shared';
+import Home from './Home';
 
 
 class App extends Component {
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.dispatch(handelInitialData());
   }
 
-  render(){
-    return(
-      <div>Starter Code</div>
+  render() {
+    return (
+      <div>
+        {this.props.authedUser ?
+          null :
+          <Home />
+        }
+
+      </div>
     )
   }
 }
 
-export default connect()(App);
+function mapStateToProps({ authedUser }) {
+  return { loading: authedUser === null }
+}
+
+export default connect(mapStateToProps)(App);
