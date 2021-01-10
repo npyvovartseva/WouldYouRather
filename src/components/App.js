@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Loading from 'react-redux-loading-bar';
 import { handelInitialData } from '../actions/shared';
 import Home from './Home';
 
@@ -13,6 +14,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Loading />
         {this.props.authedUser ?
           null :
           <Home />
