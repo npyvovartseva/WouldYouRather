@@ -4,6 +4,10 @@ export function formatDate(timestamp) {
     return time.substr(0, 5) + time.slice(-2) + ' | ' + d.toLocaleDateString()
 }
 
+export function getBaseURL() {
+    return process.env.PUBLIC_URL;
+}
+
 export function formatQuestionShort(question, author) {
     const { id, optionOne, timestamp } = question;
     const { name, avatarURL } = author;
@@ -36,13 +40,13 @@ export function formatQuestion(question, author, authedUser) {
 export function getAnsweredQuestions(questions, authedUser) {
     return Object.keys(questions).length > 0
         ? Object.fromEntries(Object.entries(questions)
-        .filter(([id, question]) => question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)))
+            .filter(([id, question]) => question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)))
         : questions;
 }
 
 export function getUnansweredQuestions(questions, authedUser) {
     return Object.keys(questions).length > 0
         ? Object.fromEntries(Object.entries(questions)
-        .filter(([id, question]) => !question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser)))
+            .filter(([id, question]) => !question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser)))
         : questions;
 }

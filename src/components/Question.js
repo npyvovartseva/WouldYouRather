@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { formatQuestionShort } from '../utils/helpers';
+import { formatQuestionShort, getBaseURL } from '../utils/helpers';
 
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -45,7 +45,7 @@ class Question extends Component {
     render() {
         const { question } = this.props;
         const { classes } = this.props;
-        const basePath = process.env.PUBLIC_URL
+        const basePath = getBaseURL();
 
         if (!question) {
             return <p>This question does not exist</p>
