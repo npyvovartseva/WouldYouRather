@@ -21,6 +21,22 @@ export function formatQuestionShort(question, author) {
     }
 }
 
+export function formatUserStats(user, authedUser) {
+    const { id, name, avatarURL, answers, questions } = user;
+    const answersCount = Object.keys(answers).length;
+    const questionCount = questions.length;
+
+    return {
+        id,
+        name,
+        avatar: avatarURL,
+        answers: answersCount,
+        questions: questionCount,
+        total: questionCount + answersCount,
+        isAuthedUser: id === authedUser
+    }
+}
+
 export function formatQuestion(question, author, authedUser) {
     const { id, optionOne, optionTwo, timestamp } = question;
     const { name, avatarURL } = author;

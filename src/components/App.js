@@ -10,6 +10,7 @@ import Nav from './Nav';
 import Home from './Home';
 import NewQuestion from './NewQuestion';
 import Question from './Question';
+import LeadersBoard from './LeadersBoard';
 
 
 
@@ -47,7 +48,7 @@ class App extends Component {
                     <Home />
                   </Route>
                   <Route path='/leaders'>
-                    <Question />
+                    <LeadersBoard />
                   </Route>
                   <Route path='/new'>
                     <NewQuestion />
@@ -65,8 +66,11 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ authedUser }) {
-  return { loading: authedUser === null }
+function mapStateToProps({ authedUser, users }) {
+  return {
+    loading: authedUser === null,
+    users: users
+  }
 }
 
 export default connect(mapStateToProps)(App);
