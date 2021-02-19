@@ -4,6 +4,7 @@ import { formatQuestionShort } from '../utils/helpers';
 
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+import Box from '@material-ui/core/Box';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
@@ -15,6 +16,7 @@ const styles = (theme) => ({
     root: {
         display: 'flex',
         flexDirection: 'column',
+        border: '1px solid black' 
     },
     body: {
         display: 'flex',
@@ -28,7 +30,7 @@ const styles = (theme) => ({
         flex: '1 0 auto',
     },
     avatar: {
-        padding: theme.spacing(1),
+        paddingLeft: theme.spacing(2),
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
@@ -49,33 +51,39 @@ class Question extends Component {
             return <p>This question does not exist</p>
         }
         return (
-            <Card className={classes.root} elevation={1}>
-                <CardHeader
-                    title={`${question.name} asks:`}
-                />
-                <div className={classes.body}>
+            <Box m={1}>
 
-                    <div className={classes.avatar}>
-                        <Avatar variant="square" className={classes.large} src={`${basePath}/${question.avatar}`}></Avatar>
-                    </div>
-                    
-                    <div className={classes.details}>
-                        <CardContent className={classes.content}>
-                            <Typography variant="h6" color="textSecondary" component="p">
-                                Would you rather
+                <Card className={classes.root} elevation={0}>
+                    <Box p={-1}>
+
+                        <CardHeader
+                            title={`${question.name} asks:`}
+                        />
+                    </Box>
+                    <div className={classes.body}>
+
+                        <div className={classes.avatar}>
+                            <Avatar variant="square" className={classes.large} src={`${basePath}/${question.avatar}`}></Avatar>
+                        </div>
+
+                        <div className={classes.details}>
+                            <CardContent className={classes.content}>
+                                <Typography variant="h6" color="textSecondary" component="p">
+                                    Would you rather
                         </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                ...{question.text}...
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    ...{question.text}...
                         </Typography>
-                            <CardActions disableSpacing>
-                                <Button variant="contained" color="primary">
-                                    View Poll
+                                <CardActions disableSpacing>
+                                    <Button variant="contained" color="primary">
+                                        View Poll
                         </Button>
-                            </CardActions>
-                        </CardContent>
+                                </CardActions>
+                            </CardContent>
+                        </div>
                     </div>
-                </div>
-            </Card>
+                </Card>
+            </Box>
         )
     }
 }
