@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab, Paper, Box } from "@material-ui/core";
 
-import Question from './Question';
+import QuestionThumbnail from './QuestionThumbnail';
 import { getAnsweredQuestions } from '../utils/helpers';
 import { getUnansweredQuestions } from '../utils/helpers';
 
@@ -45,12 +45,12 @@ class Home extends React.Component {
                         </Tabs>
                         {this.state.selectedTab === 0 &&
                             this.props.questionsAnsweredIds.map(id => (
-                                <Question key={id} id={id} />
+                                <QuestionThumbnail key={id} id={id} />
                             ))
                         }
                         {this.state.selectedTab === 1 &&
                             this.props.questionsUnansweredIds.map(id => (
-                                <Question key={id} id={id} />
+                                <QuestionThumbnail key={id} id={id} />
                             ))
                         }
                     </Box>

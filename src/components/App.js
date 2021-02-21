@@ -9,8 +9,8 @@ import { handelInitialData } from '../actions/shared';
 import Nav from './Nav';
 import Home from './Home';
 import NewQuestion from './NewQuestion';
-import Question from './Question';
 import LeadersBoard from './LeadersBoard';
+import Question from './Question';
 
 
 
@@ -52,6 +52,9 @@ class App extends Component {
                   </Route>
                   <Route path='/new'>
                     <NewQuestion />
+                  </Route>
+                  <Route path='/questions/:id'>
+                    <Question />
                   </Route>
                 </Switch>
 
