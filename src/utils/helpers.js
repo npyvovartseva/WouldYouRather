@@ -53,16 +53,13 @@ export function formatQuestion(question, author, authedUser) {
     }
 }
 
-export function getAnsweredQuestions(questions, authedUser) {
-    return Object.keys(questions).length > 0
-        ? Object.fromEntries(Object.entries(questions)
-            .filter(([id, question]) => question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)))
-        : questions;
+export function getAnsweredQuestions(questions, users, authedUser) {
+    let answered = Object.keys(users).length > 0 && authedUser !== null ? Object.keys(users[authedUser].answers) : [];
+    return answered.reduce((obj, key) => ({ ...obj, [key]: questions[key] }), {});
 }
 
-export function getUnansweredQuestions(questions, authedUser) {
-    return Object.keys(questions).length > 0
-        ? Object.fromEntries(Object.entries(questions)
-            .filter(([id, question]) => !question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser)))
-        : questions;
+export function getUnansweredQuestions(questions, users, authedUser) {
+    let answered = Object.keys(users).length > 0 && authedUser !== null ? Object.keys(users[authedUser].answers) : [];
+    let unanswered = Object.keys(questions).length > 0 ? Object.keys(questions).filter(item => !answered.includes(item)) : [];
+    return unanswered.reduce((obj, key) => ({ ...obj, [key]: questions[key] }), {});
 }

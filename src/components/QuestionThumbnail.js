@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Redirect } from 'react-router-dom';
-import { handleAnswerQuestion } from '../actions/questions';
-import { formatQuestion, getBaseURL } from '../utils/helpers';
+import { withRouter } from "react-router-dom";
+import { formatQuestionShort, getBaseURL } from '../utils/helpers';
 
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -12,10 +11,6 @@ import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
 
 const styles = (theme) => ({
     root: {
@@ -46,39 +41,17 @@ const styles = (theme) => ({
     }
 });
 
-class Question extends Component {
-    state = {
-        toHome: false,
-        answer: ''
-
+class QuestionThumbnail extends Component {
+    handleButtonClick = pageURL => {
+        this.props.history.push(pageURL);
     };
-
-    handleChange = (e) => {
-        this.setState({ answer: e.target.value });
-    }
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-
-        const { dispatch, question } = this.props;
-        const { answer } = this.state;
-
-        dispatch(handleAnswerQuestion(question.id, answer));
-
-        this.setState({ toHome: true })
-
-    }
     render() {
         const { question } = this.props;
         const { classes } = this.props;
-        const { toHome } = this.state;
         const basePath = getBaseURL();
 
         if (!question) {
             return <p>This question does not exist</p>
-        }
-        if (toHome) {
-            return <Redirect to='/' />
         }
         return (
             <Box m={1}>
@@ -95,15 +68,12 @@ class Question extends Component {
                                 <Typography component='div' variant='body1'>
                                     Would you rather
                                 </Typography>
-                                <FormControl component="fieldset">
-                                    <RadioGroup aria-label="options" name="options" >
-                                        <FormControlLabel value="optionOne" control={<Radio />} label={question.optionOne.text} onChange={this.handleChange} />
-                                        <FormControlLabel value="optionTwo" control={<Radio />} label={question.optionTwo.text} onChange={this.handleChange} />
-                                    </RadioGroup>
-                                </FormControl>
+                                <Typography component='div' variant='body1' >
+                                    ...{question.text}...
+                                </Typography>
                                 <CardActions disableSpacing>
-                                    <Button variant="contained" color="primary" onClick={this.handleSubmit}>
-                                        Submit
+                                    <Button variant="contained" color="primary" onClick={() => this.handleButtonClick(`/questions/${question.id}`)}>
+                                        View Poll
                         </Button>
                                 </CardActions>
                             </CardContent>
@@ -115,15 +85,16 @@ class Question extends Component {
     }
 }
 
-const mapStateToProps = ({ questions, users }, props) => {
-    const { id } = props.match.params;
+const mapStateToProps = ({ authedUser, users, questions }, { id }) => {
     const question = questions[id];
+
     return {
-        question: question ? formatQuestion(question, users[question.author]) : null
+        authedUser,
+        question: question ? formatQuestionShort(question, users[question.author]) : null
     }
 }
 
-const QuestionStyled = withStyles(styles)(Question);
+const QuestionStyled = withStyles(styles)(QuestionThumbnail);
 const Connected = connect(mapStateToProps)(QuestionStyled);
 
 export default withRouter(Connected);

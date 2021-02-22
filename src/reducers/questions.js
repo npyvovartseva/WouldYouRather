@@ -13,6 +13,29 @@ export default function questions(state = {}, action) {
                 ...state,
                 [action.question.id]: question
             }
+        case ANSWER_QUESTION:
+            const { id, answer, authedUser } = action.question;
+            let questionAnswered = {
+                ...state[id],
+                optionOne: answer === 'optionOne'
+                    ? {
+                        ...state[id][answer],
+                        votes: [...state[id][answer].votes, authedUser]
+                    }
+                    : state[id].optionOne,
+                optionTwo: answer === 'optionTwo'
+                    ? {
+                        ...state[id][answer],
+                        votes: [...state[id][answer].votes, authedUser]
+                    }
+                    : state[id].optionTwo,
+
+
+            };
+            return {
+                ...state,
+                [id]: questionAnswered
+            }
         default:
             return state;
 

@@ -44,12 +44,12 @@ class Home extends React.Component {
 
                         </Tabs>
                         {this.state.selectedTab === 0 &&
-                            this.props.questionsAnsweredIds.map(id => (
+                            this.props.questionsUnansweredIds.map(id => (
                                 <QuestionThumbnail key={id} id={id} />
                             ))
                         }
                         {this.state.selectedTab === 1 &&
-                            this.props.questionsUnansweredIds.map(id => (
+                            this.props.questionsAnsweredIds.map(id => (
                                 <QuestionThumbnail key={id} id={id} />
                             ))
                         }
@@ -60,9 +60,9 @@ class Home extends React.Component {
     }
 }
 
-function mapStateToProps({ questions, authedUser }) {
-    const questionsAnswered = getAnsweredQuestions(questions, authedUser);
-    const questionsUnanswered = getUnansweredQuestions(questions, authedUser);
+function mapStateToProps({ questions, users, authedUser }) {
+    const questionsAnswered = getAnsweredQuestions(questions, users, authedUser);
+    const questionsUnanswered = getUnansweredQuestions(questions, users, authedUser);
 
     return {
         questionsAnsweredIds: Object.keys(questionsAnswered).sort((a, b) => questions[a].timestamp - questions[b].timestamp),

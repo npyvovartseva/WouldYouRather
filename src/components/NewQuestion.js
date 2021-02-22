@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { handleAddQuestion } from '../actions/questions';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 
 export class NewQuestion extends Component {
     state = {
