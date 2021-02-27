@@ -45,12 +45,12 @@ class Home extends React.Component {
                         </Tabs>
                         {this.state.selectedTab === 0 &&
                             this.props.questionsUnansweredIds.map(id => (
-                                <QuestionThumbnail key={id} id={id} />
+                                <QuestionThumbnail key={id} id={id} answered='no' />
                             ))
                         }
                         {this.state.selectedTab === 1 &&
                             this.props.questionsAnsweredIds.map(id => (
-                                <QuestionThumbnail key={id} id={id} />
+                                <QuestionThumbnail key={id} id={id} answered='yes'/>
                             ))
                         }
                     </Box>

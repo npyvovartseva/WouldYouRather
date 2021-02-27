@@ -93,7 +93,7 @@ class QuestionAnswers extends Component {
                                     </Typography>
                                 <Box mt={1} mb={1}>
                                     {this.getAuthUserVote()
-                                        ? <Typography component='div' variant='body1'>
+                                        ? <Typography component='div' variant='caption'>
                                             Your vote:
                                     </Typography>
                                         : null}
@@ -109,7 +109,7 @@ class QuestionAnswers extends Component {
                                 </Box>
                                 <Box mb={1} mt={1}>
                                     {!this.getAuthUserVote()
-                                        ? <Typography component='div' variant='body1'>
+                                        ? <Typography component='div' variant='caption'>
                                             Your vote:
                                     </Typography>
                                         : null

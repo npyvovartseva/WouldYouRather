@@ -42,7 +42,8 @@ const styles = (theme) => ({
 });
 
 class QuestionThumbnail extends Component {
-    handleButtonClick = pageURL => {
+    handleButtonClick = id => {
+        const pageURL = `/questions/${id}` + (this.props.answered === 'yes' ? '/voting':'');
         this.props.history.push(pageURL);
     };
     render() {
@@ -72,7 +73,7 @@ class QuestionThumbnail extends Component {
                                     ...{question.text}...
                                 </Typography>
                                 <CardActions disableSpacing>
-                                    <Button variant="contained" color="primary" onClick={() => this.handleButtonClick(`/questions/${question.id}`)}>
+                                    <Button variant="contained" color="primary" onClick={() => this.handleButtonClick(question.id)}>
                                         View Poll
                         </Button>
                                 </CardActions>

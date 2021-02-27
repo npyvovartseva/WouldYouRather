@@ -48,7 +48,7 @@ const styles = (theme) => ({
 
 class Question extends Component {
     state = {
-        toHome: false,
+        toVoting: false,
         answer: ''
 
     };
@@ -65,19 +65,19 @@ class Question extends Component {
 
         dispatch(handleAnswerQuestion(question.id, answer));
 
-        this.setState({ toHome: true })
+        this.setState({ toVoting: true })
 
     }
     render() {
         const { question } = this.props;
         const { classes } = this.props;
-        const { toHome } = this.state;
+        const { toVoting } = this.state;
         const basePath = getBaseURL();
 
         if (!question) {
             return <p>This question does not exist</p>
         }
-        if (toHome) {
+        if (toVoting) {
             return <Redirect to={`/questions/${question.id}/voting`} />
         }
         return (
