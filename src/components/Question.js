@@ -71,7 +71,7 @@ class Question extends Component {
     render() {
         const { question } = this.props;
         const { classes } = this.props;
-        const { toVoting } = this.state;
+        const { answer, toVoting } = this.state;
         const basePath = getBaseURL();
 
         if (!question) {
@@ -102,7 +102,7 @@ class Question extends Component {
                                     </RadioGroup>
                                 </FormControl>
                                 <CardActions disableSpacing>
-                                    <Button variant="contained" color="primary" onClick={this.handleSubmit}>
+                                    <Button variant="contained" color="primary" onClick={this.handleSubmit} disabled={answer === ''}>
                                         Submit
                         </Button>
                                 </CardActions>
