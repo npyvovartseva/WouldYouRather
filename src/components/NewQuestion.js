@@ -37,7 +37,7 @@ export class NewQuestion extends Component {
     }
 
     render() {
-        const { toHome } = this.state;
+        const { toHome, text1, text2 } = this.state;
 
         if (toHome) {
             return <Redirect to='/' />
@@ -60,7 +60,7 @@ export class NewQuestion extends Component {
                             <TextField fullWidth label="Enter option two text here" variant="outlined" name='text2' onChange={this.handleChange} />
                         </Box>
                         <Box mb={1}>
-                            <Button fullWidth variant="contained" color="primary" onClick={this.handleSubmit}>Submit</Button>
+                            <Button fullWidth variant="contained" color="primary" onClick={this.handleSubmit} disabled={text1 === '' || text2 === ''}>Submit</Button>
                         </Box>
                     </Grid>
                 </Box>
