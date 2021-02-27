@@ -13,14 +13,26 @@ const styles = (theme) => ({
         display: "flex",
         flex: 1,
         justifyContent: "space-evenly"
+    },
+    buttonActive: {
+        color: "#FFFF00"
     }
 });
 
 
 export class Nav extends Component {
 
+    state = {
+        active: '/'
+    };
+
+    isActive(url) {
+        return this.state.active === url ? this.props.classes.buttonActive : '';
+    }
+
     handleButtonClick = pageURL => {
         this.props.history.push(pageURL);
+        this.setState({ active: pageURL });
     };
 
     render() {
@@ -34,17 +46,17 @@ export class Nav extends Component {
                             <Grid item xs sm></Grid>
                             <Grid item xs={10} sm={6}>
                                 <div className={classes.headerOptions}>
-                                    <Button color="inherit"
+                                    <Button color="inherit" className={this.isActive('/')}
                                         onClick={() => this.handleButtonClick("/")}
                                     >
                                         HOME
               </Button>
-                                    <Button color="inherit"
+                                    <Button color="inherit" className={this.isActive('/new')}
                                         onClick={() => this.handleButtonClick("/new")}
                                     >
                                         New Question
               </Button>
-                                    <Button color="inherit"
+                                    <Button color="inherit" className={this.isActive('/leaders')}
                                         onClick={() => this.handleButtonClick("/leaders")}
                                     >
                                         Leader Board
