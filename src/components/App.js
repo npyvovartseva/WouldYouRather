@@ -11,6 +11,7 @@ import Home from './Home';
 import NewQuestion from './NewQuestion';
 import LeadersBoard from './LeadersBoard';
 import Question from './Question';
+import QuestionAnswers from './QuestionAnswers';
 
 
 
@@ -53,8 +54,11 @@ class App extends Component {
                   <Route path='/new'>
                     <NewQuestion />
                   </Route>
-                  <Route path='/questions/:id'>
+                  <Route path='/questions/:id' exact>
                     <Question />
+                  </Route>
+                  <Route path='/questions/:id/voting' >
+                    <QuestionAnswers />
                   </Route>
                 </Switch>
 

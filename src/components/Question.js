@@ -78,7 +78,7 @@ class Question extends Component {
             return <p>This question does not exist</p>
         }
         if (toHome) {
-            return <Redirect to='/' />
+            return <Redirect to={`/questions/${question.id}/voting`} />
         }
         return (
             <Box m={1}>
