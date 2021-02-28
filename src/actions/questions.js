@@ -20,6 +20,7 @@ function addQuesttion(question) {
         question
     }
 }
+
 function answerQuesttion(id, answer, authedUser) {
     return {
         type: ANSWER_QUESTION,
