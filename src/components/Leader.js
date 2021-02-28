@@ -55,8 +55,7 @@ const styles = (theme) => ({
 
 class Leader extends Component {
     render() {
-        const { user } = this.props;
-        const { classes } = this.props;
+        const { user, classes } = this.props;
         const basePath = getBaseURL();
 
         return (
@@ -98,5 +97,4 @@ class Leader extends Component {
     }
 }
 
-
-export default withStyles(styles)(Leader)
+export default withStyles(styles)(Leader);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { formatUserStats } from '../utils/helpers';
-import { Paper, Box } from "@material-ui/core";
+import { Paper, Box } from '@material-ui/core';
 import Leader from './Leader';
 
 export class LeadersBoard extends Component {
@@ -13,6 +13,7 @@ export class LeadersBoard extends Component {
             .map(user => (
                 <Leader user={user} key={user.id} />
             ));
+
         return (
             <Paper square>
                 <Box p={1}>
@@ -28,6 +29,6 @@ const mapStateToProps = ({ authedUser, users }) => {
         users,
         authedUser
     }
-}
+};
 
-export default connect(mapStateToProps)(LeadersBoard)
+export default connect(mapStateToProps)(LeadersBoard);

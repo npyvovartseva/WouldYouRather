@@ -12,18 +12,14 @@ import NewQuestion from './NewQuestion';
 import LeadersBoard from './LeadersBoard';
 import Question from './Question';
 import QuestionAnswers from './QuestionAnswers';
-
-
+import Login from './Login';
 
 const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#263238',
-    },
-    secondary: {
-      main: '#263238',
     }
-  },
+  }
 });
 
 class App extends Component {
@@ -37,34 +33,39 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <div>
           <Loading />
-          <Nav />
-          {this.props.authedUser ?
-            null :
-            <Grid container>
-              <Grid item xs sm></Grid>
-              <Grid item xs={10} sm={4}>
+          {this.props.authedUser
+            ? <>
+              <Nav />
+              <Grid container>
+                <Grid item xs sm></Grid>
+                <Grid item xs={10} sm={4}>
 
-                <Switch>
-                  <Route exact path='/'>
-                    <Home />
-                  </Route>
-                  <Route path='/leaders'>
-                    <LeadersBoard />
-                  </Route>
-                  <Route path='/new'>
-                    <NewQuestion />
-                  </Route>
-                  <Route path='/questions/:id' exact>
-                    <Question />
-                  </Route>
-                  <Route path='/questions/:id/voting' >
-                    <QuestionAnswers />
-                  </Route>
-                </Switch>
+                  <Switch>
+                    <Route exact path='/'>
+                      <Home />
+                    </Route>
+                    <Route path='/leaders'>
+                      <LeadersBoard />
+                    </Route>
+                    <Route path='/new'>
+                      <NewQuestion />
+                    </Route>
+                    <Route path='/questions/:id' exact>
+                      <Question />
+                    </Route>
+                    <Route path='/questions/:id/voting' >
+                      <QuestionAnswers />
+                    </Route>
+                    <Route path='/login' >
+                      <Login />
+                    </Route>
+                  </Switch>
 
+                </Grid>
+                <Grid item xs sm></Grid>
               </Grid>
-              <Grid item xs sm></Grid>
-            </Grid>
+            </>
+            : <Login />
           }
 
         </div>
@@ -76,6 +77,7 @@ class App extends Component {
 function mapStateToProps({ authedUser, users }) {
   return {
     loading: authedUser === null,
+    authedUser: authedUser,
     users: users
   }
 }

@@ -47,15 +47,15 @@ const styles = (theme) => ({
 });
 
 class Question extends Component {
+
     state = {
         toVoting: false,
         answer: ''
-
     };
 
     handleChange = (e) => {
         this.setState({ answer: e.target.value });
-    }
+    };
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -67,7 +67,8 @@ class Question extends Component {
 
         this.setState({ toVoting: true })
 
-    }
+    };
+
     render() {
         const { question } = this.props;
         const { classes } = this.props;
@@ -95,14 +96,14 @@ class Question extends Component {
                                 <Typography component='div' variant='body1'>
                                     Would you rather
                                 </Typography>
-                                <FormControl component="fieldset">
-                                    <RadioGroup aria-label="options" name="options" >
-                                        <FormControlLabel value="optionOne" control={<Radio />} label={question.optionOne.text} onChange={this.handleChange} />
-                                        <FormControlLabel value="optionTwo" control={<Radio />} label={question.optionTwo.text} onChange={this.handleChange} />
+                                <FormControl component='fieldset'>
+                                    <RadioGroup aria-label='options' name='options' >
+                                        <FormControlLabel value='optionOne' control={<Radio />} label={question.optionOne.text} onChange={this.handleChange} />
+                                        <FormControlLabel value='optionTwo' control={<Radio />} label={question.optionTwo.text} onChange={this.handleChange} />
                                     </RadioGroup>
                                 </FormControl>
                                 <CardActions disableSpacing>
-                                    <Button variant="contained" color="primary" onClick={this.handleSubmit} disabled={answer === ''}>
+                                    <Button variant='contained' color='primary' onClick={this.handleSubmit} disabled={answer === ''}>
                                         Submit
                         </Button>
                                 </CardActions>
@@ -121,7 +122,7 @@ const mapStateToProps = ({ questions, users }, props) => {
     return {
         question: question ? formatQuestion(question, users[question.author]) : null
     }
-}
+};
 
 const QuestionStyled = withStyles(styles)(Question);
 const Connected = connect(mapStateToProps)(QuestionStyled);

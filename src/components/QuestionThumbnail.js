@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 import { formatQuestionShort, getBaseURL } from '../utils/helpers';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -73,7 +73,7 @@ class QuestionThumbnail extends Component {
                                     ...{question.text}...
                                 </Typography>
                                 <CardActions disableSpacing>
-                                    <Button variant="contained" color="primary" onClick={() => this.handleButtonClick(question.id)}>
+                                    <Button variant='contained' color='primary' onClick={() => this.handleButtonClick(question.id)}>
                                         View Poll
                         </Button>
                                 </CardActions>
@@ -93,7 +93,7 @@ const mapStateToProps = ({ authedUser, users, questions }, { id }) => {
         authedUser,
         question: question ? formatQuestionShort(question, users[question.author]) : null
     }
-}
+};
 
 const QuestionStyled = withStyles(styles)(QuestionThumbnail);
 const Connected = connect(mapStateToProps)(QuestionStyled);

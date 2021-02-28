@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Tabs, Tab, Paper, Box } from "@material-ui/core";
+import { Tabs, Tab, Paper, Box } from '@material-ui/core';
 
 import QuestionThumbnail from './QuestionThumbnail';
 import { getAnsweredQuestions } from '../utils/helpers';
@@ -10,11 +10,11 @@ class Home extends React.Component {
 
     state = {
         selectedTab: 0
-    }
+    };
 
     tabNameToIndex = {
-        0: "unanswered",
-        1: "unswered"
+        0: 'unanswered',
+        1: 'unswered'
     };
 
     indexToTabName = {
@@ -23,7 +23,6 @@ class Home extends React.Component {
     };
 
     handleChange = (event, newValue) => {
-        //history.push(`/home/${tabNameToIndex[newValue]}`);
         this.setState({ selectedTab: newValue });
     };
 
@@ -36,11 +35,11 @@ class Home extends React.Component {
                         <Tabs
                             value={this.state.selectedTab}
                             onChange={this.handleChange}
-                            indicatorColor="primary"
-                            textColor="primary">
+                            indicatorColor='primary'
+                            textColor='primary'>
 
-                            <Tab label="Unanswered" />
-                            <Tab label="Unswered" />
+                            <Tab label='Unanswered' />
+                            <Tab label='Unswered' />
 
                         </Tabs>
                         {this.state.selectedTab === 0 &&
@@ -50,7 +49,7 @@ class Home extends React.Component {
                         }
                         {this.state.selectedTab === 1 &&
                             this.props.questionsAnsweredIds.map(id => (
-                                <QuestionThumbnail key={id} id={id} answered='yes'/>
+                                <QuestionThumbnail key={id} id={id} answered='yes' />
                             ))
                         }
                     </Box>
@@ -68,6 +67,6 @@ function mapStateToProps({ questions, users, authedUser }) {
         questionsAnsweredIds: Object.keys(questionsAnswered).sort((a, b) => questions[a].timestamp - questions[b].timestamp),
         questionsUnansweredIds: Object.keys(questionsUnanswered).sort((a, b) => questions[a].timestamp - questions[b].timestamp)
     }
-}
+};
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(Home);

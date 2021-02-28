@@ -11,7 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-
 const styles = (theme) => ({
     root: {
         display: 'flex',
@@ -51,22 +50,22 @@ const BorderLinearProgress = withStyles((theme) => ({
     },
     colorPrimary: {
         backgroundColor:
-            theme.palette.grey[theme.palette.type === "light" ? 200 : 700]
+            theme.palette.grey[theme.palette.type === 'light' ? 200 : 700]
     },
     bar: {
         borderRadius: 5,
-        backgroundColor: "#1a90ff"
+        backgroundColor: '#1a90ff'
     }
 }))(LinearProgress);
 
 class QuestionAnswers extends Component {
     getRange = (totalVotes, votes) => {
         return 100 - 100 * (totalVotes - votes) / totalVotes;
-    }
+    };
 
     getAuthUserVote = () => {
         return this.props.question.optionOne.votes.includes(this.props.authedUser)
-    }
+    };
 
     render() {
         const { question } = this.props;
@@ -101,7 +100,7 @@ class QuestionAnswers extends Component {
                                         Would you rather {question.optionOne.text}?
                                     </Typography>
                                     <div>
-                                        <BorderLinearProgress variant="determinate" value={this.getRange(question.totalVotes, question.optionOne.votes.length)} />
+                                        <BorderLinearProgress variant='determinate' value={this.getRange(question.totalVotes, question.optionOne.votes.length)} />
                                     </div>
                                     <Typography component='div' variant='caption' className={classes.caption}>
                                         {question.optionOne.votes.length} out of {question.totalVotes} votes
@@ -118,7 +117,7 @@ class QuestionAnswers extends Component {
                                         Would you rather {question.optionTwo.text}?
                                     </Typography>
                                     <div>
-                                        <BorderLinearProgress variant="determinate" value={this.getRange(question.totalVotes, question.optionTwo.votes.length)} />
+                                        <BorderLinearProgress variant='determinate' value={this.getRange(question.totalVotes, question.optionTwo.votes.length)} />
                                     </div>
                                     <Typography component='div' variant='caption' className={classes.caption}>
                                         {question.optionTwo.votes.length} out of {question.totalVotes} votes
