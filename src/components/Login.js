@@ -55,7 +55,7 @@ export class Login extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.dispatch(setAuthedUser(this.state.userId));
-        this.props.history.push('/');
+        this.props.history.goBack();
     };
 
     render() {

@@ -45,14 +45,13 @@ export class Nav extends Component {
         this.props.history.push(pageURL);
         this.setState({ active: pageURL });
     };
-
+    
     handelLogout = () => {
         this.props.dispatch(deleteAuthedUser());
-        this.props.history.push('/login');
     };
 
     render() {
-        const { classes, authedUser, avatarURL, name } = this.props;
+        const { classes, authedUser, avatarURL, name, url } = this.props;
         const basePath = getBaseURL();
         return (
             <Box mb={2}>
