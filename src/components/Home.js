@@ -14,7 +14,7 @@ class Home extends React.Component {
 
     tabNameToIndex = {
         0: 'unanswered',
-        1: 'unswered'
+        1: 'answered'
     };
 
     indexToTabName = {
